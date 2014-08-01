@@ -4,7 +4,8 @@
 
   function addCanvasStyle(){
     styles.innerHTML += '.pagenotes-canvas {';
-    styles.innerHTML += 'width: 100%; height: 100%;';
+    styles.innerHTML += 'position: absolute; top: 0; left: 0;';
+    styles.innerHTML += '}';
   }
 
   addCanvasStyle();

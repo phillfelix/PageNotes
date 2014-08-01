@@ -14,8 +14,15 @@ gulp.task('vendor', function() {
 
 });
 
+var build_files = [
+  'build/vendor/vendor.js',
+  'src/html2canvas.js',
+  'src/pagenotes_styles.js',
+  'src/pagenotes.js'
+];
+
 gulp.task('build', ['vendor'], function() {
-  return  gulp.src(['build/vendor/vendor.js', 'src/*.js'])
+  return  gulp.src(build_files)
           .pipe(concat('pagenote.dev.js'))
           .pipe(gulp.dest('build'));
 });
@@ -26,5 +33,9 @@ gulp.task('minify', ['build'], function() {
           .pipe(concat('pagenote.min.js'))
           .pipe(gulp.dest('build'));
 });
+
+var watcher = gulp.watch(build_files, ['build', 'minify']);
+
+//watcher.on()
 
 gulp.task('default', ['minify']);
