@@ -1,0 +1,21 @@
+{
+  "name": "pagenotes",
+  "version": "0.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Philipe Felix",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.8.6",
+    "gulp-bookmarkify": "^0.1.1",
+    "gulp-bower-files": "^0.2.7",
+    "gulp-closure-compiler-service": "^0.1.1",
+    "gulp-compressor": "^0.1.0",
+    "gulp-concat": "^2.3.4",
+    "gulp-util": "^3.0.0",
+    "main-bower-files": "^1.0.2"
+  }
+}
