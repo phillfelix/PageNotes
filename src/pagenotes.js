@@ -12,32 +12,31 @@
           width = $(document.body).outerWidth(),
           height = $(document.body).outerHeight();
 
-      this.canvas = $('<canvas id="pagenotes-canvas" class="pagenotes-canvas"></canvas>')
-                      .attr('width', width).attr('height', height)
-                      .appendTo($(document.body));
-      this.stage = new createjs.Stage('pagenotes-canvas');
-
 
       html2canvas(document.body, {
 
         onrendered: function(screenshot){
 
+          that.canvas = $('<canvas id="pagenotes-canvas" class="pagenotes-canvas"></canvas>')
+                          .attr('width', screenshot.width).attr('height', screenshot.height)
+                          .appendTo($(document.body));
+          that.stage = new createjs.Stage('pagenotes-canvas');
+
           that.bg = new createjs.Bitmap(screenshot);
+          that.bg.filters = [new createjs.BlurFilter(5,5,1)];
+          that.bg.cache(0, 0, screenshot.width, screenshot.height);
 
           that.stage.addChild(that.bg);
-
-          var overlay = new createjs.Shape();
-          overlay.graphics.beginFill("rgba(0, 0, 0, 0.6");
-          overlay.graphics.drawRect(0, 0, width, height);
-
-          that.stage.addChild(overlay);
-
 
           that.stage.update();
 
         }
 
       });
+
+    },
+
+    mask: function(){
 
     }
 
