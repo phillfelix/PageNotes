@@ -8,9 +8,9 @@
 
   Pagenotes.prototype = {
 
-    init: function(){
+    init : function(){
 
-      var that = this,
+      var self = this,
           width = $(document.body).outerWidth(),
           height = $(document.body).outerHeight();
 
@@ -20,9 +20,9 @@
 
         onrendered: function(screenshot){
 
-          that.canvas.attr('width', screenshot.width).attr('height', screenshot.height).appendTo($(document.body));
-          that.stage = new createjs.Stage('pagenotes-canvas');
-          that.screenshot = screenshot;
+          self.canvas.attr('width', screenshot.width).attr('height', screenshot.height).appendTo($(document.body));
+          self.stage = new createjs.Stage('pagenotes-canvas');
+          self.screenshot = screenshot;
 
           var bg = new createjs.Bitmap(screenshot);
           bg.filters = [new createjs.BlurFilter(5,5,1)];
@@ -31,18 +31,33 @@
           var overlay = new createjs.Shape();
           overlay.graphics.beginFill("rgba(0, 0, 0, 0.6)").drawRect(0, 0, screenshot.width, screenshot.height);
 
-          that.stage.addChild(bg);
-          that.stage.addChild(overlay);
+          self.stage.addChild(bg);
+          self.stage.addChild(overlay);
 
 
-          that.stage.update();
+          self.stage.update();
+
+          self.selectTool('rectangle_highlight');
+          self.renderToolbar();
 
         }
 
       });
 
-      this.selectTool('rectangle_highlight');
+    },
 
+    renderToolbar : function(){
+
+      var self = this;
+      var toolbar = $('<div id="pagenotes-toolbar" class="pagenotes-toolbar"></div>').appendTo($(document.body));
+
+      $.each(this.toolkit, function(toolName, tool){
+        $('<button data-tool="'+toolName+'">'+toolName+'</button>').appendTo(toolbar);
+      });
+      $("pagenotes-toolbar").on('click', function(e){
+        e.preventDefault();
+        self.selectTool($(this).data('tool'));
+      })
     },
 
     selectTool : function(tool){
