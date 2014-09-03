@@ -54,7 +54,7 @@
       $.each(this.toolkit, function(toolName, tool){
         $('<button data-tool="'+toolName+'">'+toolName+'</button>').appendTo(toolbar);
       });
-      $("pagenotes-toolbar").on('click', function(e){
+      $("#pagenotes-toolbar button").on('click', function(e){
         e.preventDefault();
         self.selectTool($(this).data('tool'));
       })
