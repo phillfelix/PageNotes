@@ -1,8 +1,9 @@
 (function(){
 
-  var Pagenotes = function(){
+  var Pagenotes = function(toolkit){
     this.temp = { mask: false };
     this.masks = [];
+    this.toolkit = toolkit || {};
   }
 
   Pagenotes.prototype = {
@@ -40,80 +41,18 @@
 
       });
 
-      this.canvas.on('mousedown', function(ev){
-        that.openMask(ev.offsetX, ev.offsetY);
-      }).on('mousemove', function(ev){
-        if(that.temp.mask) that.updateMask(ev.offsetX, ev.offsetY)
-      }).on('mouseup', function(ev){
-        if(that.temp.mask) that.saveMask()
-      });
+      this.selectTool('rectangle_highlight');
 
     },
 
-    mask: function(x, y, w, h){
-
-      x = x || 0;
-      y = y || 0;
-      w = w || 100;
-      h = h || 100;
-
-      var newMask = new createjs.Shape();
-      newMask.x = x;
-      newMask.y = y;
-      newMask.graphics.drawRect(0, 0, w, h);
-
-      var display = new createjs.Bitmap(this.screenshot);
-      display.mask = newMask;
-
-      this.stage.addChild(display);
-      this.stage.update();
-
-    },
-
-    openMask: function(x, y){
-
-      var newMask = new createjs.Shape();
-      newMask.x = x;
-      newMask.y = y;
-      newMask.graphics.drawRect(0, 0, 1, 1);
-
-      var display = new createjs.Bitmap(this.screenshot);
-      display.mask = newMask;
-
-      this.stage.addChild(display);
-      this.stage.update();
-
-      this.temp.mask = {
-        mask : newMask,
-        display: display
-      };
-
-    },
-
-    updateMask: function(x, y){
-
-      var tempMask = this.temp.mask,
-          w = x - tempMask.mask.x,
-          h = y - tempMask.mask.y;
-
-      tempMask.mask.graphics.clear();
-      tempMask.mask.graphics.drawRect(0, 0, w, h);
-
-      this.stage.update();
-
-    },
-
-    saveMask: function(){
-
-      var mask = this.temp.mask;
-
-      this.temp.mask = false;
-
+    selectTool : function(tool){
+      if(this.toolkit.active) this.toolkit[this.toolkit.active].off(this);
+      if(this.toolkit[tool]) this.toolkit[tool].on(this);
     }
 
   }
 
-  var pagenotes = new Pagenotes();
+  var pagenotes = new Pagenotes(PagenotesDefaultToolkit);
   pagenotes.init();
 
 })();

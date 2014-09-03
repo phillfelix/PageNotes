@@ -18,6 +18,7 @@ var build_files = [
   'build/vendor/vendor.js',
   'src/html2canvas.js',
   'src/pagenotes_styles.js',
+  'src/tools/',
   'src/pagenotes.js'
 ];
 
