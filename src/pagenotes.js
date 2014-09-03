@@ -61,9 +61,14 @@
     },
 
     selectTool : function(tool){
-      if(this.toolkit.active) this.toolkit[this.toolkit.active].off(this);
-      if(this.toolkit[tool]) this.toolkit[tool].on(this);
+      if(this.activeTool) this.toolkit[this.activeTool].off(this);
+      if(this.toolkit[tool]) {
+        this.activeTool = tool;
+        this.toolkit[tool].on(this);
+      }
     }
+
+
 
   }
 

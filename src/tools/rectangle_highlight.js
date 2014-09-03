@@ -20,7 +20,7 @@
 
     off : function(Parent){
 
-      this.canvas.off("mousedown, mousemove, mouseup");
+      Parent.canvas.off("mousedown").off("mousemove").off("mouseup");
 
     },
 
