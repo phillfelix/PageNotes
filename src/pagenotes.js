@@ -74,8 +74,6 @@
 
     selectTool : function(tool){
       if(this.activeTool) this.toolkit[this.activeTool].off(this);
-      console.log(this.toolkit);
-      console.log(this.tool);
       if(this.toolkit[tool]) {
         this.activeTool = tool;
         this.toolkit[tool].on(this);

@@ -31,10 +31,12 @@
         'position' : 'fixed',
         'left' : x,
         'top' : y
-      }).on('click', function(ev){
-        tool.saveText($(this).val(), x, y);
-        $(this).remove();
-        Parent.temp.text = false;
+      }).on('keydown', function(ev){
+        if(ev.keyCode == 13 && !ev.shiftKey) {
+          tool.saveText($(this).val(), x, y);
+          $(this).remove();
+          Parent.temp.text = false;
+        }
       }).appendTo($(document.body)).focus();
 
       Parent.temp.text = textField;
