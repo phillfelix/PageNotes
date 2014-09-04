@@ -10,6 +10,18 @@
 
     init : function(){
 
+      var self = this;
+
+      $('<button class="pagenotes-shot">Shot</button>').on('click', function(ev){
+        ev.preventDefault();
+        $(this).remove();
+        self.shot();
+      }).appendTo($(document.body));
+
+    },
+
+    shot : function(){
+
       var self = this,
           width = $(document.body).outerWidth(),
           height = $(document.body).outerHeight();
@@ -49,7 +61,7 @@
     renderToolbar : function(){
 
       var self = this;
-      var toolbar = $('<div id="pagenotes-toolbar" class="pagenotes-toolbar"></div>').appendTo($(document.body));
+      var toolbar = $('<div class="pagenotes-toolbar"></div>').appendTo($(document.body));
 
       $.each(this.toolkit, function(toolName, tool){
         $('<button data-tool="'+toolName+'">'+toolName+'</button>').appendTo(toolbar);

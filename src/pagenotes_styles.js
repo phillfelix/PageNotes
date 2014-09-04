@@ -17,8 +17,16 @@
     styles.innerHTML += '}';
   }
 
+  function addShotButtonStyle(){
+    styles.innerHTML += '.pagenotes-shot {';
+    styles.innerHTML += 'position: fixed; left: 10px; bottom: 10px;';
+    styles.innerHTML += 'z-index: 3;';
+    styles.innerHTML += '}';
+  }
+
   addCanvasStyle();
   addToolbarStyle();
+  addShotButtonStyle();
 
   document.getElementsByTagName("head")[0].appendChild(styles);
 
