@@ -9,13 +9,11 @@ var SRC   = 'src/*.js';
 gulp.task('vendor', function() {
 
   return gulp.src(bower_files(), { base: 'bower_components' })
-    .pipe(concat('vendor.js'))
     .pipe(gulp.dest('build/vendor'));
 
 });
 
 var build_files = [
-  'build/vendor/vendor.js',
   'src/html2canvas.js',
   'src/pagenotes_styles.js',
   'src/tools/*.js',
@@ -35,7 +33,7 @@ gulp.task('minify', ['build'], function() {
           .pipe(gulp.dest('build'));
 });
 
-var watcher = gulp.watch(build_files, ['build', 'minify']);
+//var watcher = gulp.watch(build_files, ['build', 'minify']);
 
 //watcher.on()
 
