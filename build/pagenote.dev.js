@@ -3037,10 +3037,12 @@ _html2canvas.Renderer.Canvas = function(options) {
         'position' : 'fixed',
         'left' : x,
         'top' : y
-      }).on('click', function(ev){
-        tool.saveText($(this).val(), x, y);
-        $(this).remove();
-        Parent.temp.text = false;
+      }).on('keydown', function(ev){
+        if(ev.keyCode == 13 && !ev.shiftKey) {
+          tool.saveText($(this).val(), x, y);
+          $(this).remove();
+          Parent.temp.text = false;
+        }
       }).appendTo($(document.body)).focus();
 
       Parent.temp.text = textField;
@@ -3140,8 +3142,6 @@ _html2canvas.Renderer.Canvas = function(options) {
 
     selectTool : function(tool){
       if(this.activeTool) this.toolkit[this.activeTool].off(this);
-      console.log(this.toolkit);
-      console.log(this.tool);
       if(this.toolkit[tool]) {
         this.activeTool = tool;
         this.toolkit[tool].on(this);
