@@ -25,6 +25,14 @@ h3{
   font-weight: normal;
 }
 
+p{
+  margin: 40px 0;
+}
+
+.how-to{
+  margin-bottom: 10px;
+}
+
 code{
   display: block;
   color: #fff;
@@ -51,5 +59,33 @@ code{
   font-size: 24px;
   font-weight: bold;
   text-shadow: 2px 2px 0 #000;
-  margin: 40px 0;
+}
+
+.center{
+  text-align: center;
+}
+
+#download-button{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 36px;
+  display: inline-block;
+  background-color: #4096EE;
+  color: #3F4C6B;
+  text-shadow: 2px 2px 0 #36393D;
+  box-shadow: 0 0 5px 2px #000;
+  padding: 10px 15px;
+  border: 2px solid #3F4C6B;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  text-decoration: none;
+}
+
+.author{
+  color: #4096EE;
+  text-decoration: none;
+}
+
+footer{
+  font-size: 14px;
 }
